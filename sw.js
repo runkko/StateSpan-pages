@@ -1,4 +1,4 @@
-const CACHE_NAME = "self-observer-shell-v2";
+const CACHE_NAME = "self-observer-shell-v3";
 const BASE_PATH = new URL(self.registration.scope).pathname.replace(/\/$/, "");
 const SHELL = [`${BASE_PATH}/`, `${BASE_PATH}/icon-192.png`, `${BASE_PATH}/icon-512.png`];
 
