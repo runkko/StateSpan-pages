@@ -1,6 +1,7 @@
 1:"$Sreact.fragment"
-2:I[39580,["/StateSpan-pages/_next/static/chunks/0dbhjjzl8qfwv.js","/StateSpan-pages/_next/static/chunks/0ejbvf2_sjkd..js","/StateSpan-pages/_next/static/chunks/05h8.ovxopv2..js","/StateSpan-pages/_next/static/chunks/0ec8ha78q4c9n.js"],"AppRoot"]
-3:I[97367,["/StateSpan-pages/_next/static/chunks/0dbhjjzl8qfwv.js"],"OutletBoundary"]
-4:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{}],[["$","script","script-0",{"src":"/StateSpan-pages/_next/static/chunks/0ejbvf2_sjkd..js","async":true}],["$","script","script-1",{"src":"/StateSpan-pages/_next/static/chunks/05h8.ovxopv2..js","async":true}],["$","script","script-2",{"src":"/StateSpan-pages/_next/static/chunks/0ec8ha78q4c9n.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"rigXA4flYl6kSwviktGtI"}
-5:null
+2:I[59919,["/StateSpan-pages/_next/static/chunks/0dbhjjzl8qfwv.js","/StateSpan-pages/_next/static/chunks/04qlp19es.9mk.js","/StateSpan-pages/_next/static/chunks/050up2jwk8hnn.js","/StateSpan-pages/_next/static/chunks/0eitpq4mc9ekb.js"],"ThemeProvider"]
+3:I[39580,["/StateSpan-pages/_next/static/chunks/0dbhjjzl8qfwv.js","/StateSpan-pages/_next/static/chunks/04qlp19es.9mk.js","/StateSpan-pages/_next/static/chunks/050up2jwk8hnn.js","/StateSpan-pages/_next/static/chunks/0eitpq4mc9ekb.js"],"AppRoot"]
+4:I[97367,["/StateSpan-pages/_next/static/chunks/0dbhjjzl8qfwv.js"],"OutletBoundary"]
+5:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"children":["$","$L3",null,{}]}],[["$","script","script-0",{"src":"/StateSpan-pages/_next/static/chunks/04qlp19es.9mk.js","async":true}],["$","script","script-1",{"src":"/StateSpan-pages/_next/static/chunks/050up2jwk8hnn.js","async":true}],["$","script","script-2",{"src":"/StateSpan-pages/_next/static/chunks/0eitpq4mc9ekb.js","async":true}]],["$","$L4",null,{"children":["$","$5",null,{"name":"Next.MetadataOutlet","children":"$@6"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"GXEX2TSiv6ABEtkN-5piL"}
+6:null
