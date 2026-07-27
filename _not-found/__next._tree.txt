@@ -1,2 +1,2 @@
-:HL["/StateSpan-pages/_next/static/chunks/0v.3.2zdx.h-e.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"Nl0kGYh0Mb2nU-OaywIeI"}
+:HL["/StateSpan-pages/_next/static/chunks/03w1h-e7607v2.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"mN0MAntNZCdvsSdl7mP_N"}
