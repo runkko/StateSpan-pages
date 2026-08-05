@@ -37,6 +37,26 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(staleWhileRevalidate(event.request));
 });
 
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  const requestedUrl = event.notification.data?.url;
+  const fallbackUrl = `${self.location.origin}${BASE_PATH}/`;
+  const targetUrl = typeof requestedUrl === "string" && requestedUrl.startsWith(self.location.origin)
+    ? requestedUrl
+    : fallbackUrl;
+  event.waitUntil(focusOrOpenApplication(targetUrl));
+});
+
+async function focusOrOpenApplication(targetUrl) {
+  const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
+  const existing = windows.find((client) => new URL(client.url).origin === self.location.origin);
+  if (existing) {
+    await existing.focus();
+    return;
+  }
+  await self.clients.openWindow(targetUrl);
+}
+
 async function cacheFirst(request, cacheName) {
   const cached = await caches.match(request);
   if (cached) return cached;
