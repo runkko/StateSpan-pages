@@ -1,2 +1,2 @@
 :HL["/StateSpan-pages/_next/static/chunks/0c.g_yocuksga.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"iMZEcOOIj8S9caufPbJ1j"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"HgCQhguAfBZbe-7kez1W0"}
