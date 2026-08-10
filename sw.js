@@ -1,4 +1,4 @@
-const SHELL_CACHE = "self-observer-shell-v4";
+const SHELL_CACHE = "self-observer-shell-v5";
 const STATIC_CACHE = "self-observer-static-v1";
 const BASE_PATH = new URL(self.registration.scope).pathname.replace(/\/$/, "");
 const SHELL = [`${BASE_PATH}/`, `${BASE_PATH}/icon-192.png`, `${BASE_PATH}/icon-512.png`];
@@ -37,6 +37,12 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(staleWhileRevalidate(event.request));
 });
 
+self.addEventListener("push", (event) => {
+  const intent = readPushIntent(event.data);
+  if (!intent) return;
+  event.waitUntil(showPushIntent(intent));
+});
+
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
   const requestedUrl = event.notification.data?.url;
@@ -55,6 +61,56 @@ async function focusOrOpenApplication(targetUrl) {
     return;
   }
   await self.clients.openWindow(targetUrl);
+}
+
+async function showPushIntent(intent) {
+  const fallbackUrl = `${self.location.origin}${BASE_PATH}/`;
+  const requestedUrl = typeof intent.url === "string" && intent.url.startsWith(self.location.origin)
+    ? intent.url
+    : fallbackUrl;
+  const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
+  const hasVisibleApplication = windows.some((client) => client.visibilityState === "visible");
+  if (!hasVisibleApplication) {
+    await self.registration.showNotification(intent.title, {
+      body: intent.body,
+      tag: intent.id,
+      icon: `${BASE_PATH}/icon-192.png`,
+      badge: `${BASE_PATH}/icon-192.png`,
+      timestamp: Number.isFinite(Date.parse(intent.occurredAt)) ? Date.parse(intent.occurredAt) : Date.now(),
+      data: {
+        ...intent.data,
+        kind: intent.kind,
+        occurredAt: intent.occurredAt,
+        url: requestedUrl,
+      },
+    });
+  }
+  for (const client of windows) {
+    client.postMessage({ type: "statespan-notification-delivered", intentId: intent.id });
+  }
+}
+
+function readPushIntent(data) {
+  if (!data) return null;
+  try {
+    const value = data.json();
+    if (!value || typeof value !== "object") return null;
+    if (value.schemaVersion !== 1) return null;
+    if (typeof value.id !== "string" || typeof value.kind !== "string") return null;
+    if (typeof value.title !== "string" || typeof value.body !== "string") return null;
+    if (typeof value.occurredAt !== "string") return null;
+    return {
+      id: value.id,
+      kind: value.kind,
+      title: value.title,
+      body: value.body,
+      occurredAt: value.occurredAt,
+      data: value.data && typeof value.data === "object" ? value.data : {},
+      url: typeof value.url === "string" ? value.url : null,
+    };
+  } catch {
+    return null;
+  }
 }
 
 async function cacheFirst(request, cacheName) {
