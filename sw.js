@@ -1,4 +1,4 @@
-const SHELL_CACHE = "self-observer-shell-v5";
+const SHELL_CACHE = "self-observer-shell-v6";
 const STATIC_CACHE = "self-observer-static-v1";
 const BASE_PATH = new URL(self.registration.scope).pathname.replace(/\/$/, "");
 const SHELL = [`${BASE_PATH}/`, `${BASE_PATH}/icon-192.png`, `${BASE_PATH}/icon-512.png`];
@@ -69,8 +69,10 @@ async function showPushIntent(intent) {
     ? intent.url
     : fallbackUrl;
   const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
-  const hasVisibleApplication = windows.some((client) => client.visibilityState === "visible");
-  if (!hasVisibleApplication) {
+  const existing = typeof self.registration.getNotifications === "function"
+    ? await self.registration.getNotifications({ tag: intent.id }).catch(() => [])
+    : [];
+  if (existing.length === 0) {
     await self.registration.showNotification(intent.title, {
       body: intent.body,
       tag: intent.id,
