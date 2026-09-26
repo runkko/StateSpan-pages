@@ -24,8 +24,8 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
 
-  if (url.pathname.includes("/_next/static/")) {
-    event.respondWith(cacheFirst(event.request, STATIC_CACHE));
+  if (url.pathname.includes("/_next/static/") || url.pathname.startsWith(`${BASE_PATH}/world-worker/`)) {
+    event.respondWith(cacheFirst(event.request, STATIC_CACHE, event));
     return;
   }
 
@@ -115,13 +115,15 @@ function readPushIntent(data) {
   }
 }
 
-async function cacheFirst(request, cacheName) {
-  const cached = await caches.match(request);
+async function cacheFirst(request, cacheName, event) {
+  const cached = await caches.match(request).catch(() => undefined);
   if (cached) return cached;
   const response = await fetch(request);
   if (response.ok) {
-    const cache = await caches.open(cacheName);
-    await cache.put(request, response.clone());
+    // Cache storage is optional. Never hold a worker/script response behind a
+    // slow disk write or turn an otherwise successful download into a failure.
+    const copy = response.clone();
+    event.waitUntil(caches.open(cacheName).then((cache) => cache.put(request, copy)).catch(() => {}));
   }
   return response;
 }
