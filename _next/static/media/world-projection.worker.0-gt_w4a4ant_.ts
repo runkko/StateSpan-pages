@@ -17,3 +17,7 @@ self.onmessage = (event: MessageEvent<WorldProjectionRequest>) => {
     self.postMessage({ revision: request.revision, error: "图景生成失败，请刷新重试。" });
   }
 };
+
+// The host must distinguish a loaded worker from a constructor that returned
+// successfully while its scripts never installed a message handler.
+self.postMessage({ ready: true });
