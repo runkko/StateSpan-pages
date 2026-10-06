@@ -1,2 +1,2 @@
 :HL["/StateSpan-pages/_next/static/chunks/00dx3n5_2mljh.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"XQaekF3bYwvtcUlaJcSDa"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"u2EVSj6X-EYc3N2ni0Slk"}
